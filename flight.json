@@ -1,0 +1,3 @@
+[{"flightID":1,"Destination":"LA","DepartFrom":"HOU","DepartsAt":"2020-11-02T15:30:00Z","Seats":[{"Number":1,"IsLocked":false},{"Number":2,"IsLocked":false},{"Number":3,"IsLocked":false},{"Number":4,"IsLocked":false}]},
+{"flightID":2,"Destination":"LAS","DepartFrom":"AUS","DepartsAt":"2020-11-02T15:30:00Z","Seats":[{"Number":1,"IsLocked":false},{"Number":2,"IsLocked":false},{"Number":3,"IsLocked":false},{"Number":4,"IsLocked":false}]},
+{"flightID":3,"Destination":"STL","DepartFrom":"HOU","DepartsAt":"2020-11-02T15:30:00Z","Seats":[{"Number":1,"IsLocked":false},{"Number":2,"IsLocked":false},{"Number":3,"IsLocked":false},{"Number":4,"IsLocked":false}]}]
