@@ -49,25 +49,22 @@ func GetFlightDetails(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
-
 	}
 	sendData, err := json.Marshal(data)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
-
 	}
 	w.Write([]byte(sendData))
 }
 
-func Equal(a, b []FlightDetails) bool {
-
-	for i, v := range a {
-		if v.FlightID != b[i].FlightID {
-			return false
+func Contains(list []FlightDetails, item int) bool {
+	for _, v := range list {
+		if v.FlightID == item {
+			return true
 		}
 	}
-	return true
+	return false
 }
 
 //Add data to Json file
@@ -85,13 +82,15 @@ func PostFlightDetails(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	flightDetail, _ := getConfig()
-	if Equal(flightDetail, Data) {
+	for _, v := range Data {
+		if !Contains(flightDetail, v.FlightID) {
+			flightDetail = append(flightDetail, Data...)
+		} else {
+			fmt.Println("ID already Existed")
+		}
 
-		http.Error(w, "Flight Details already Exist", 500)
-		return
 	}
-	//update file
-	flightDetail = append(flightDetail, Data...)
+
 	jsonData, _ := json.Marshal(flightDetail)
 	ioutil.WriteFile("flight.json", jsonData, os.ModePerm)
 }
@@ -197,6 +196,7 @@ func BookFlightFunction(w http.ResponseWriter, r *http.Request) {
 	mutex.Unlock()
 
 }
+
 func main() {
 
 	router := mux.NewRouter()
